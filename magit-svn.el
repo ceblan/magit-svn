@@ -194,6 +194,8 @@ If USE-CACHE is non-nil, use the cached information."
 
 ;;;###autoload
 (defun magit-svn-show-revision ()
+   "Show the SVN revision for a GIT sha1 commit from a magit
+commit buffer."
   (interactive)
   ;;(magit-copy-buffer-revision)
   (let ((rev (magit-git-string "svn" "find-rev" (magit-copy-buffer-revision))))
