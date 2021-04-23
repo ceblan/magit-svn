@@ -188,10 +188,19 @@ If USE-CACHE is non-nil, use the cached information."
    ("f" "Fetch"           magit-svn-fetch)
    ("x" "Fetch Externals" magit-svn-fetch-externals)
    ("s" "Show commit"     magit-svn-show-commit)
+   ("r" "Show revision"   magit-svn-show-revision)
    ("b" "Create branch"   magit-svn-create-branch)
    ("t" "Create tag"      magit-svn-create-tag)])
 
 ;;;###autoload
+(defun magit-svn-show-revision ()
+  (interactive)
+  ;;(magit-copy-buffer-revision)
+  (let ((rev (magit-git-string "svn" "find-rev" (magit-copy-buffer-revision))))
+    (kill-new (format "r%s" rev))
+    (message "Revision => r%s" rev)
+    ))
+
 (defun magit-svn-show-commit (rev &optional branch)
   "Show the Git commit for a Svn revision read from the user.
 With a prefix argument also read a branch to search in."
@@ -301,6 +310,7 @@ in `magit-svn-external-directories' and runs
     ["Fetch"           magit-svn-fetch]
     ["Fetch Externals" magit-svn-fetch-externals]
     ["Show commit"     magit-svn-show-commit]
+    ["Show revision"   magit-svn-show-revision]
     ["Create branch"   magit-svn-create-branch]
     ["Create tag"      magit-svn-create-tag]))
 
