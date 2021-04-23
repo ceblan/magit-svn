@@ -200,8 +200,7 @@ commit buffer."
   ;;(magit-copy-buffer-revision)
   (let ((rev (magit-git-string "svn" "find-rev" (magit-copy-buffer-revision))))
     (kill-new (format "r%s" rev))
-    (message "Revision => r%s" rev)
-    ))
+    (message "Revision => r%s" rev)))
 
 (defun magit-svn-show-commit (rev &optional branch)
   "Show the Git commit for a Svn revision read from the user.
